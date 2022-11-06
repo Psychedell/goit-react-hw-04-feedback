@@ -1,24 +1,62 @@
 import PropTypes from 'prop-types';
 
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  return options.map(option => (
-    <button
-      key={option}
-      type="button"
-      name={option}
-      onClick={() => onLeaveFeedback(option)}
-      style={{
-        margin: 10,
-        cursor: 'pointer',
-        borderRadius: 5,
-        background: 'silver',
-        padding: 4,
-        textTransform: 'capitalize',
-      }}
-    >
-      {option}
-    </button>
-  ));
+export const FeedbackOptions = ({
+  onLeaveGood,
+  onLeaveNeutral,
+  onLeaveBad,
+}) => {
+  return (
+    <>
+      <button
+        key="good"
+        type="button"
+        name="good"
+        onClick={() => onLeaveGood()}
+        style={{
+          margin: 10,
+          cursor: 'pointer',
+          borderRadius: 5,
+          background: 'silver',
+          padding: 4,
+          textTransform: 'capitalize',
+        }}
+      >
+        Good
+      </button>
+      <button
+        key="neutral"
+        type="button"
+        name="good"
+        onClick={() => onLeaveNeutral()}
+        style={{
+          margin: 10,
+          cursor: 'pointer',
+          borderRadius: 5,
+          background: 'silver',
+          padding: 4,
+          textTransform: 'capitalize',
+        }}
+      >
+        Neutral
+      </button>
+      <button
+        key="bad"
+        type="button"
+        name="good"
+        onClick={() => onLeaveBad()}
+        style={{
+          margin: 10,
+          cursor: 'pointer',
+          borderRadius: 5,
+          background: 'silver',
+          padding: 4,
+          textTransform: 'capitalize',
+        }}
+      >
+        Bad
+      </button>
+    </>
+  );
 };
 
 FeedbackOptions.propTypes = {

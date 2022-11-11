@@ -1,64 +1,22 @@
 import PropTypes from 'prop-types';
+import { FeedbackOptionsButton } from './FeedbackOptions.styled';
 
-export const FeedbackOptions = ({
-  onLeaveGood,
-  onLeaveNeutral,
-  onLeaveBad,
-}) => {
-  return (
-    <>
-      <button
-        key="good"
+export const FeedbackOptions = ({ options, onHandleIncrement }) => {
+  return options.map(option => {
+    return (
+      <FeedbackOptionsButton
+        key={option}
         type="button"
-        name="good"
-        onClick={() => onLeaveGood()}
-        style={{
-          margin: 10,
-          cursor: 'pointer',
-          borderRadius: 5,
-          background: 'silver',
-          padding: 4,
-          textTransform: 'capitalize',
-        }}
+        name={option}
+        onClick={() => onHandleIncrement(option)}
       >
-        Good
-      </button>
-      <button
-        key="neutral"
-        type="button"
-        name="good"
-        onClick={() => onLeaveNeutral()}
-        style={{
-          margin: 10,
-          cursor: 'pointer',
-          borderRadius: 5,
-          background: 'silver',
-          padding: 4,
-          textTransform: 'capitalize',
-        }}
-      >
-        Neutral
-      </button>
-      <button
-        key="bad"
-        type="button"
-        name="good"
-        onClick={() => onLeaveBad()}
-        style={{
-          margin: 10,
-          cursor: 'pointer',
-          borderRadius: 5,
-          background: 'silver',
-          padding: 4,
-          textTransform: 'capitalize',
-        }}
-      >
-        Bad
-      </button>
-    </>
-  );
+        {option}
+      </FeedbackOptionsButton>
+    );
+  });
 };
 
 FeedbackOptions.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onHandleIncrement: PropTypes.func.isRequired,
 };

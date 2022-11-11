@@ -12,36 +12,35 @@ export function App() {
   const [total, setTotal] = useState(0);
   const [positivePercentage, setPositivePercentage] = useState(0);
 
-  const keys = ['good', 'neutral', 'bad'];
+  const options = Object.keys({ good, neutral, bad });
 
-  const handleIncrementGood = () => {
-    setGood(prevState => prevState + 1);
-  };
-
-  const handleIncrementNeutral = () => {
-    setNeutral(prevState => prevState + 1);
-  };
-
-  const handleIncrementBad = () => {
-    setbad(prevState => prevState + 1);
+  const handleIncrement = option => {
+    switch (option) {
+      case 'good':
+        setGood(prevState => prevState + 1);
+        break;
+      case 'neutral':
+        setNeutral(prevState => prevState + 1);
+        break;
+      case 'bad':
+        setbad(prevState => prevState + 1);
+        break;
+      default:
+        console.log('Invalid fedback type');
+    }
   };
 
   useEffect(() => {
     setTotal(good + neutral + bad);
-  }, [good, neutral, bad]);
-
-  useEffect(() => {
     setPositivePercentage(good === 0 ? 0 : Math.round((good / total) * 100));
-  }, [good, total]);
+  }, [good, neutral, bad, total]);
 
   return (
     <Wrapper>
-      <Section title="Please leave fedback">
+      <Section title="Please leave feedback">
         <FeedbackOptions
-          options={keys}
-          onLeaveGood={handleIncrementGood}
-          onLeaveNeutral={handleIncrementNeutral}
-          onLeaveBad={handleIncrementBad}
+          options={options}
+          onHandleIncrement={handleIncrement}
         />
       </Section>
       <Section title="Statistics">
